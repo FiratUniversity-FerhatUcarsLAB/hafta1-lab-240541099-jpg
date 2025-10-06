@@ -1,4 +1,55 @@
-Öğrenci No:
-AD-SOYAD:
+Öğrenci No:240541099
+AD-SOYAD:Zübeyir Aslan
 
 Lütfen seçtiğiniz algoritmaya ait çözümü ve diğer isterleri aşağıya ekleyiniz:
+START
+
+1. Malzemeleri hazırla:
+    eggs = 2
+    milk = 2 yemek kaşığı
+    butter = 1 yemek kaşığı
+    salt = bir tutam
+    pepper = bir tutam
+    fillings = [peynir, mantar, biber] (opsiyonel)
+
+2. Yumurtaları çırp:
+    crack eggs into bowl
+    add milk, salt, pepper
+    WHILE karışım homojen değil
+        whisk eggs
+    END WHILE
+
+3. Tavayı hazırla:
+    heat pan on medium
+    add butter
+    WAIT until butter melts
+    IF butter starts browning THEN
+        reduce heat
+    END IF
+
+4. Yumurtayı pişir:
+    pour mixture into pan
+    cooking_time = 0
+    WHILE cooking_time < 5 minutes AND yumurta tamamen pişmedi
+        WAIT 30 seconds
+        IF kenarlar pişti AND ortası sıvı THEN
+            move edges to center gently
+        END IF
+        cooking_time += 0.5
+    END WHILE
+
+5. İç malzemeleri ekle:
+    IF fillings exist THEN
+        add fillings on one side
+    END IF
+
+6. Katla ve servis et:
+    IF omlet pişmiş ama kuru değil THEN
+        fold in half
+        serve on plate
+        PRINT "Mükemmel omlet hazır!"
+    ELSE
+        PRINT "Bir dahaki sefere ısıyı daha iyi ayarla."
+    END IF
+
+END
