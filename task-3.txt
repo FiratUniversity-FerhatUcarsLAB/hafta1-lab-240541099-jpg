@@ -1,4 +1,41 @@
-Öğrenci No:
-AD-SOYAD:
+Öğrenci No:240541099
+AD-SOYAD:Zübeyir Aslan
 
 Lütfen seçtiğiniz algoritmaya ait çözümü ve diğer isterleri aşağıya ekleyiniz:
+START
+    // 1. Prepare the library list
+    LibraryList ← list of all books in the library
+
+    // 2. Get the search term from user
+    PRINT "Enter the book title or author to search:"
+    SearchTerm ← INPUT
+    PRINT "User search term: " + SearchTerm
+
+    // 3. Initialize empty list for results
+    FoundBooks ← EMPTY LIST
+
+    // 4. Loop through each book in the library
+    FOR each book IN LibraryList
+        BookTitle ← TOLOWER(book.title)
+        AuthorName ← TOLOWER(book.author)
+
+        // 5. Check if search term is in title or author
+        IF SearchTerm IS NOT EMPTY AND
+           (SearchTerm IN BookTitle OR SearchTerm IN AuthorName) THEN
+            ADD book TO FoundBooks
+        END IF
+    END FOR
+
+    // 6. Display search results
+    IF FoundBooks IS EMPTY THEN
+        PRINT "No results found."
+    ELSE
+        PRINT "Found books:"
+        FOR each book IN FoundBooks
+            PRINT "Title: " + book.title
+            PRINT "Author: " + book.author
+            PRINT "------------------------"
+        END FOR
+    END IF
+
+END
