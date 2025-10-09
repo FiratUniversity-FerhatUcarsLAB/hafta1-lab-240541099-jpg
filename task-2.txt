@@ -1,4 +1,81 @@
-Öğrenci No:
-AD-SOYAD:
+Öğrenci No:240541099
+AD-SOYAD:Zübeyir Aslan
 
 Lütfen seçtiğiniz algoritmaya ait çözümü ve diğer isterleri aşağıya ekleyiniz:
+Algorithm TicTacToeWinningStrategy
+    // 1. Oyuncu ve Tahta Tanımı
+    INITIALIZE board[3][3] as empty
+    SET player = "X"      // veya "O"
+    SET opponent = "O"    // karşı oyuncu
+
+    // 2. Oyuncunun Sırası
+    WHILE board has empty cells DO
+        DISPLAY board
+        IF player_can_win(board) THEN
+            MAKE winning move
+        ELSE IF opponent_can_win(board) THEN
+            BLOCK opponent's winning move
+        ELSE IF center_cell_empty(board) THEN
+            TAKE center cell
+        ELSE IF corner_cell_empty(board) THEN
+            TAKE one of the empty corner cells
+        ELSE
+            TAKE one of the empty side cells
+        END IF
+
+        // Oyunun kazanıp kazanmadığını kontrol et
+        IF player_wins(board) THEN
+            PRINT player + " wins!"
+            BREAK
+        ELSE IF board_full(board) THEN
+            PRINT "Draw!"
+            BREAK
+        END IF
+
+        // Sıra değiştir
+        SWITCH player and opponent
+    END WHILE
+
+END Algorithm
+
+// Yardımcı Fonksiyonlar
+FUNCTION player_can_win(board)
+    FOR each empty cell IN board
+        SIMULATE move for player
+        IF this move makes player win THEN
+            RETURN TRUE
+        END IF
+    END FOR
+    RETURN FALSE
+END FUNCTION
+
+FUNCTION opponent_can_win(board)
+    FOR each empty cell IN board
+        SIMULATE move for opponent
+        IF this move makes opponent win THEN
+            RETURN TRUE
+        END IF
+    END FOR
+    RETURN FALSE
+END FUNCTION
+
+FUNCTION center_cell_empty(board)
+    RETURN board[1][1] is empty
+END FUNCTION
+
+FUNCTION corner_cell_empty(board)
+    RETURN any of board[0][0], board[0][2], board[2][0], board[2][2] is empty
+END FUNCTION
+
+FUNCTION side_cell_empty(board)
+    RETURN any of board[0][1], board[1][0], board[1][2], board[2][1] is empty
+END FUNCTION
+
+FUNCTION player_wins(board)
+    CHECK all rows, columns, and diagonals for 3 same symbols
+    RETURN TRUE if player wins, else FALSE
+END FUNCTION
+
+FUNCTION board_full(board)
+    RETURN TRUE if no empty cells remain, else FALSE
+END FUNCTION
