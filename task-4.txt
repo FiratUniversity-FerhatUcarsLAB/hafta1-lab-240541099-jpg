@@ -2,3 +2,62 @@
 AD-SOYAD:
 
 Lütfen seçtiğiniz algoritmaya ait çözümü ve diğer isterleri aşağıya ekleyiniz:
+
+BAŞLA KılıçYap
+
+  // Malzeme listesi
+  SABİT kılıçUzunluğu = 20-30 cm
+  SABİT malzemeler = [uzun dikdörtgen bloklar, küçük kareler, süsleme parçaları]
+  
+  // 1. Kılıç sapı (kabza) oluştur
+  PROSEDÜR SapYap()
+    kısa_bloklar = 3-4 adet kısa lego bloğu al
+    DÖNGÜ i = 0'dan kısa_bloklar.uzunluk'a kadar
+      blokları dikey olarak üst üste yerleştir
+    DÖNGÜ_SONU
+    
+    // Kabza koruyucusu ekle
+    geniş_blok = 1 adet geniş düz parça al
+    geniş_bloğu sapın üstüne yatay olarak yerleştir
+  PROSEDÜR_SONU
+  
+  // 2. Kılıç bıçağı (blade) oluştur
+  PROSEDÜR BıçakYap()
+    uzun_bloklar = 5-8 adet uzun ince lego bloğu al
+    
+    DÖNGÜ her uzun_blok için
+      blokları dikey olarak düz bir çizgide birleştir
+    DÖNGÜ_SONU
+    
+    // Uç kısmı şekillendir
+    üçgen_veya_sivri_parça al
+    ucu en üste yerleştir
+  PROSEDÜR_SONU
+  
+  // 3. Parçaları birleştir
+  PROSEDÜR Birleştir()
+    kabza_koruyucusundan_sonra = sap.üst_nokta
+    bıçak.alt_nokta'yı kabza_koruyucusundan_sonra'ya bağla
+    
+    // Sağlamlık kontrolü
+    EĞER bağlantı gevşek İSE
+      ek_bloklar ile güçlendir
+    EĞER_SONU
+  PROSEDÜR_SONU
+  
+  // 4. Detaylar ekle (opsiyonel)
+  PROSEDÜR DetayEkle()
+    renkli_parçalar ile süsle
+    sticker'lar ekle
+    kabzaya desen oluştur
+  PROSEDÜR_SONU
+  
+  // Ana akış
+  SapYap()
+  BıçakYap()
+  Birleştir()
+  DetayEkle()
+  
+  DÖNDÜR tamamlanmış_kılıç
+
+BİTİR KılıçYap
