@@ -2,3 +2,151 @@
 AD-SOYAD:
 
 Lütfen seçtiğiniz algoritmaya ait çözümü ve diğer isterleri aşağıya ekleyiniz:
+
+// Anne Sinirli İken İstekte Bulunma Algoritması
+
+BAŞLA AnnedenBirŞeyİste(istek)
+    
+    // Adım 1: Annenin ruh halini kontrol et
+    anneninRuhHali = AnneninDurumunuGözlemle()
+    
+    EĞER anneninRuhHali == "SİNİRLİ" O ZAMAN
+        
+        // Adım 2: Aciliyet seviyesini değerlendir
+        aciliyetSeviyesi = İsteğinAciliyetiniDeğerlendir(istek)
+        
+        EĞER aciliyetSeviyesi == "HAYATI" O ZAMAN
+            // Çok acilse, yine de iste ama dikkatli ol
+            AnaDikkatliYaklaş()
+            İstekteGeriBildirimBekle()
+        
+        AKSI_TAKDIRDE
+            // Acil değilse, bekle
+            GüvenliMesafedeKal()
+            
+            DÖNGÜ (anneninRuhHali == "SİNİRLİ")
+                Bekle(30_dakika)
+                anneninRuhHali = AnneninDurumunuGözlemle()
+                
+                // Beklerken yardımcı ol
+                EĞER YardımFırsatıVar() O ZAMAN
+                    GönüllüYardımEt()  // Puanlarını artır
+                FIN
+            FIN_DÖNGÜ
+        FIN
+    FIN
+    
+    // Adım 3: Uygun zamanı bekle (maksimum deneme sayısı ile)
+    denemeSayısı = 0
+    MAKSIMUM_DENEME = 3
+    
+    DÖNGÜ (UygunZamanDeğil() VE denemeSayısı < MAKSIMUM_DENEME)
+        uygunZaman = EnİyiZamanıBul()
+        Bekle(uygunZaman)
+        denemeSayısı = denemeSayısı + 1
+    FIN_DÖNGÜ
+    
+    // Pes etme koşulu
+    EĞER denemeSayısı >= MAKSIMUM_DENEME O ZAMAN
+        PesEt()
+        DÖNDÜR "VAZGEÇTIM"
+    FIN
+    
+    // Adım 4: İsteği nazikçe sun
+    EĞER anneninRuhHali == "SAKIN" VEYA anneninRuhHali == "MUTLU" O ZAMAN
+        
+        // Zemin hazırlığı
+        GüncelDurumSor()
+        Bekle(2_dakika)
+        
+        // İyi davranış puanlarını göster
+        EĞER SonGünlerdeİyiDavrandın() O ZAMAN
+            KüçükHatırlatmalarYap()
+        FIN
+        
+        // Asıl isteği yap
+        Nazikçeİste(istek)
+        
+        // Cevabı bekle
+        cevap = AnneninCevabınıBekle()
+        
+        EĞER cevap == "HAYIR" O ZAMAN
+            Tartışma()  // ASLA!
+            TeşekkürEt()
+            SaygıGöster()
+            DahaSonraDene()
+        
+        AKSI_TAKDIRDE_EĞER cevap == "EVET" O ZAMAN
+            MinnetiniGöster()
+            VerdiğinSözüTut()
+        FIN
+    FIN
+    
+    DÖNDÜR cevap
+FIN
+
+
+// Yardımcı Fonksiyonlar
+
+FONKSİYON AnneninDurumunuGözlemle()
+    belirtiler = []
+    
+    // Fiziksel belirtileri kontrol et
+    EĞER Kaşları_Çatık VEYA Sesi_Yüksek VEYA Hızlı_Hareket_Ediyor O ZAMAN
+        belirtiler.ekle("SİNİRLİ")
+    FIN
+    
+    // Ortam belirtileri
+    EĞER Bulaşıklar_Yığılmış VEYA Ev_Dağınık VEYA Telefonda_Tartışıyor O ZAMAN
+        belirtiler.ekle("STRESLİ")
+    FIN
+    
+    EĞER belirtiler.uzunluk > 0 O ZAMAN
+        DÖNDÜR "SİNİRLİ"
+    AKSI_TAKDIRDE
+        DÖNDÜR "SAKIN"
+    FIN
+FIN
+
+FONKSİYON EnİyiZamanıBul()
+    iyiZamanlar = [
+        "Kahvaltıdan_Sonra",
+        "Öğleden_Sonra_Dinlenirken",
+        "Akşam_Yemeği_Sonrası_Mutlu_Anlar"
+    ]
+    
+    kötüZamanlar = [
+        "Sabah_Erken",
+        "Yemek_Hazırlarken",
+        "Yorgun_Olduğunda",
+        "İşten_Yeni_Geldiğinde"
+    ]
+    
+    DÖNDÜR iyiZamanlar[rastgele]
+FIN
+
+FONKSİYON GönüllüYardımEt()
+    yardımSeçenekleri = [
+        "Bulaşıkları_Yıka",
+        "Odanı_Topla",
+        "Kardeşine_Yardım_Et",
+        "Çöpü_Çıkar"
+    ]
+    
+    Yap(yardımSeçenekleri[rastgele])
+    // Bonus: Söylenmeden yap!
+FIN
+
+FONKSİYON PesEt()
+    // Stratejik geri çekilme
+    YAZDIR("Belki gerçekten o kadar önemli değildi...")
+    YAZDIR("Ya da kendim halledebilirim")
+    
+    alternatifler = [
+        "Babadan_İste",
+        "Kendin_Çözmeyi_Dene",
+        "İsteği_Ertele",
+        "Arkadaşlardan_Destek_Al"
+    ]
+    
+    DÖNDÜR alternatifler[rastgele]
